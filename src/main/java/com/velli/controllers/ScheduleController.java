@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import com.velli.models.FullRouteModel;
 import com.velli.models.RouteModel;
 import com.velli.models.ScheduleModel;
 import com.velli.models.StationModel;
@@ -30,6 +31,10 @@ public class ScheduleController {
 			Integer length = Integer.parseInt(route.substring(2));
 			origin.putRoute(length, dest);
 		}
+		Collection<StationModel> allStations = scheduleModel.getStations().values();
+		for (StationModel station : allStations) {
+			station.populateFullRoutes();
+		}
 	}
 	/*
 	 * Start exposed functions for calculating train routes
@@ -42,8 +47,8 @@ public class ScheduleController {
 			if (route == null){
 				return null;
 			} else {
-				tripLength += route.length;
-				departureStation = route.destination;
+				tripLength += route.getLength();
+				departureStation = route.getDestination();
 			}
 		}
 		return tripLength;
@@ -53,6 +58,10 @@ public class ScheduleController {
 		routesChecked = new HashMap<String, Integer>();
 		StationModel departureStation = scheduleModel.getStation(fullRoute[0]);
 		StationModel arrivalStation = scheduleModel.getStation(fullRoute[1]);
+		HashMap<String, FullRouteModel> fullRoutes = departureStation.getFullRoutes();
+		
+		
+		
 		ArrayList<String> routeTravelled = new ArrayList<String>();
 		routeTravelled.add(departureStation.getStationName());
 		return findShortestRoute(departureStation, arrivalStation.getStationName(), routeTravelled);

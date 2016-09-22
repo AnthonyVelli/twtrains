@@ -1,0 +1,10 @@
+Distance,A-B-C,9
+Distance,A-D,5
+Distance,A-D-C,13
+Distance,A-E-B-C-D,22
+Distance,A-E-D,NO SUCH ROUTE
+MaxStops,C-C,2,3
+ExactStops,A-C,3,4
+Shortest,A-C,9
+Shortest,B-B,9
+NumRoutes,C-C,7,30

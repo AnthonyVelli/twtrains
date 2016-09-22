@@ -1,0 +1,6 @@
+com\velli\models\StationModel.class
+com\velli\main\CustomReader.class
+com\velli\controllers\ScheduleController.class
+com\velli\main\ProcessSchedule.class
+com\velli\models\ScheduleModel.class
+com\velli\models\RouteModel.class

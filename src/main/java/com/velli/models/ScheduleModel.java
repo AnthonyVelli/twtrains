@@ -5,7 +5,14 @@ import java.util.HashMap;
 public class ScheduleModel {
 	private HashMap<String, StationModel> stationModels = new HashMap<String, StationModel>();
 	
-	public ScheduleModel(){
+	public ScheduleModel(String schedString){
+		String[] schedArray = schedString.split(", ");
+		for (String route : schedArray) {
+			StationModel origin = getOrCreateStation(route.substring(0, 1));
+			StationModel dest = getOrCreateStation(route.substring(1, 2));
+			Integer length = Integer.parseInt(route.substring(2));
+			origin.putRoute(length, dest);
+		}
 	}
 	
 	public StationModel getOrCreateStation(String stationName){
